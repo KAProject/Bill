@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <title>Bill</title>
+  </head>
+  <body>
+    <div class="page_body">
+        <div id="section_input">
+          <h1 class="clinic_name">Chetan Health Clinic</h1> 
+          <h1>hii</h1>
+          <h1 class="clinic_name">Chetan Health Clinic</h1> 
+          <h2 class="statement1 clinic_name">Enter Patient detailes</h2>
+          <label for="date" class="label_text">Select Date:</label>
+          <input type="date" id="date" name="date"><br><br>
+          <label for="bill_no" class="label_text">Bill number:</label>
+          <input type="number" id="bill_no" name="bill" placeholder="Enter Bill number"><br><br>
+          <label for="name" class="label_text">Patient name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter Patient name"><br><br>
+          <label for="age" class="label_text">Age:</label>
+          <input type="number" id="age" name="age" placeholder="Enter Patient age"><br><br>
+          <label for="ph_no" class="label_text">Phone no:</label>
+          <input type="number" id="ph_no" name="ph_no" placeholder="Enter phone no"><br><br>
+          <!-- <p>Select Gender</p>
+          <p>Male <input type="radio" name="Gender" id="Male" required /> Female <input type="radio" name="Gender" id="Female" required /></p> -->
+          <hr>
+          <form id="dataForm">
+            <label for="charges" class="label_text">Treatment:</label>
+            <input type="text" id="charges" name="charges" placeholder="Enter treatment name"><br><br>
+            <label for="quantity" class="label_text">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Enter quantity"><br><br>
+            <label for="price" class="label_text">Price:</label>
+            <input type="number" id="price" name="price" placeholder="Enter price"><br><br>
+            <button type="button" onclick="submitData()">+</button>
+          </form>
+          <!-- <button class="btn btn-primary" onclick="display('section_bill'); displayContent(); display('section_buttons');">View Bill</button> -->
+          <button class="btn btn-primary" onclick="showSections(); displayContent();">View Bill</button>
+        </div>
+
+        <div class="card bill_body" id="section_bill">
+          <div class="output_head d-flex flex-align-items-center">
+            <h2 class="clinic_name"> <img src="snake_logo.png" alt="image" width="43px" height="43px"> CHETAN HEALTH CLINIC <img src="chc_logi.png" alt="image" width="43px" height="43px"></h2>
+            <P class="address">Shop No3, Katigenahalli Ramanna Complex N Nagenhalli Main Road DR SRK Nagar Post, K Narayanpura Banglore 560077 </P>
+            <p class="address">Dr.ATMANAND S HIREMATH General Physician (9663601034)</p>
+            <p class="address">KPME REG: BLU03534ALHL2</p>
+          </div>
+          <div class="line1 d-flex flex-direction-row">
+            <h2 class="output_text">Date : </h2>&nbsp;<div class="output_values" id="displaydate"></div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h2 class="output_text">Bill No : </h2>&nbsp;<div class="output_values" id="displaybill_no"></div>
+          </div>
+          <div class="line2 d-flex flex-direction-row">
+            <h2 class="output_text">Patient Name : </h2>&nbsp;<div class="output_values" id="displayname"></div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h2 class="output_text">Age : </h2>&nbsp;<div class="output_values" id="displayage"></div>
+          </div>
+          <div class="line3 d-flex flex-direction-row">
+            <h2 class="output_text">Phone no : </h2>&nbsp;<div class="output_values" id="displayph_no"></div>
+          </div>
+          
+          
+          
+          <table border="1" id="dataTable">
+            <tr>
+              <th>Treatment</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+              <!-- <th>Action</th> -->
+            </tr>
+          </table><br>
+          <h3 class="total">Grand Total: ₹<span id="grandTotal">0</span></h3>
+          <!-- <button class="btn btn-primary" onclick="displayContent()">Pt Details</button> -->
+
+          <div>
+            <span class="scan_text">Scan here to know more -></span><img src="Qr_code.png" alt="Paid" width="80px" height="80px">
+            <img class="stamp" src="paid_stamp.png" alt="Paid" width="80px" height="80px">
+            <!-- <p class="stamp stamp_statement">Chetan health clinic Medical director</p> -->
+          </div>
+          <div>
+            <p class="stamp stamp_statement">Chetan Health Clinic Medical director</p>
+          </div>
+          <br><br>
+        </div>
+<!-- <br><br><br><br> -->
+        <div class="buttons" id="section_buttons">
+          <button class="btn btn-primary" onclick="display('section_input')"> <- Back</button>
+
+          <button onclick="downloadAsImage()">Download</button>
+          <!-- <button onclick="downloadAsPDF()">Download as PDF</button> -->
+        </div>
+    
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/js/ccbp-ui-kit.js"></script>
+    </body>
+</html>
+
+
+
+<!-- <body>
+  <!-- Section for content input --
+  <section>
+    <h2>Enter Your Content</h2>
+    <textarea id="userInput" placeholder="Type your content here..."></textarea>
+    <br>
+    <button onclick="displayContent()">Display Content</button>
+  </section>
+
+  <!-- Section where user input is displayed --
+  <section>
+    <h2>Displayed Content</h2>
+    <div id="displaySection"></div>
+  </section>
+
+  <script>
+    function displayContent() {
+      // Retrieve the value entered by the user
+      const userContent = document.getElementById("userInput").value;
+      
+      // Display the content in the display section
+      document.getElementById("displaySection").innerText = userContent;
+    }
+  </script>
+</body> -->

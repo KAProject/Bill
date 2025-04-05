@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* height: 100vh; */
+    margin: 0;
+}
+
+#section_input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+ 
+.page_body{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.bill_body{
+    border: 5px solid black;
+    padding: 10px;
+    /* margin: 10px; */
+    border-radius: 10px;
+}
+
+.clinic_name{
+    font-weight: 1000;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
+    text-align: center;
+    /* background: -webkit-linear-gradient(#d81818, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+.statement1{
+    font-size: 25px;
+    /* background: -webkit-linear-gradient(#18b8d8, #087ca7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+.label_text{
+    font-size: 20px;
+    background: -webkit-linear-gradient(#d8ae18, #a70865);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+button:hover {
+    background-color: #b9d7d1;
+}
+
+.address{
+    font-size: 15px;
+    text-align: center;
+    /* background: -webkit-linear-gradient(#572dd5, #05536f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+.output_head{
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.output_text{
+    font-size: 15px;
+    /* background: -webkit-linear-gradient(#d8ae18, #a70865);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+.output_values{
+    font-size: 15px;
+    /* background: -webkit-linear-gradient(#18d81e, #e00c88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+table{
+    width: 100%;
+}
+
+.stamp{
+    /* display: flex; */
+    /* justify-content: flex-end; */
+    float: right;
+}
+
+.stamp_statement{
+    font-size: 12px;
+    width: 130px;
+}
+
+.total{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.scan_text{
+    width: 30px;
+    font-size: 8px;
+}
+
+.buttons{
+    background-color: aliceblue;
+}
